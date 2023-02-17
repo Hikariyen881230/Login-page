@@ -1,0 +1,183 @@
+/* global-- */
+*{
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+body{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    min-height: 100vh;
+    background: #23242a;
+}
+/* 取消瀏覽器歷史紀錄的 input 樣式 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+transition: background-color 600000s 0s, color 600000s 0s;
+}
+a{
+    text-decoration: none;
+    color: #8f8f8f;
+}
+/* --global */
+
+
+/* models-- */
+h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+/* --models */
+
+
+/* main-container-- */
+.box-container{
+    position: relative;
+    width: 460px;
+    height: 500px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+/* --main-container */
+
+
+/* 邊框特效-- */
+.box-container::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 460px;
+    height: 500px;
+    /* 下往上漸變 3 blocks ( transparent*1 , purple*2 ) */
+    background: linear-gradient(0deg,transparent,#7b58fa,#7b58fa); 
+    /* animate-name / duration / direction / iteration-count */
+    animation: rotate-animate 5s linear infinite;
+    /* 設定右下角為中心點旋轉 */
+    transform-origin: bottom right;
+}
+.box-container::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 460px;
+    height: 500px;
+    /* 下往上漸變 3 blocks ( transparent*1 , purple*2 ) */
+    background: linear-gradient(0deg,transparent,#7b58fa,#7b58fa); 
+    /* animate-name / duration / direction / iteration-count */
+    animation: rotate-animate 5s linear infinite;
+    /* 設定右下角為中心點旋轉 */
+    transform-origin: bottom right;
+    /* 設定為 duration 的一半可以對稱 */
+    animation-delay: -2.5s;
+}
+/* --邊框特效 */
+
+
+/* animations-- */
+@keyframes rotate-animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+/* --animations */
+
+
+/* element in form-- */
+.login-form{
+    /* 利用 absolute 和 inset 的特性將內部多餘的顏色蓋住 */
+    position: absolute;
+    border-radius: 8px;
+    background: #28292d;
+    inset: 2px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 40px 50px;
+}
+
+.login-form h1{
+    color: #7b58fa;
+    text-align: center;
+    letter-spacing: 0.1rem;
+}
+.input-box{
+    position: relative;
+    margin-top: 30px;
+    border-bottom: 2px solid #7b58fa;
+}
+
+.input-box input,button{
+    position: relative;
+    border-radius: 3px;
+    width: 100%;
+    padding: 15px 10px 5px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.25rem;
+    letter-spacing: 0.05rem;
+}
+.input-box span{
+    position: absolute;
+    left: 0;
+    padding: 15px 10px 10px;
+    font-size: 1.25rem;
+    letter-spacing: 0.05rem;
+    color: #8f8f8f;
+    transition: 0.4s;
+    /* 可以點選底層的元素 */
+    pointer-events: none;
+}
+/* input 具有 '有效值' 的時候影響 span */
+.input-box input:valid ~ span,
+/* 點擊時 下層的 span 更換顏色 */
+.input-box input:focus ~ span{
+    color: #7b58fa;
+    transform: translateY(-25px);
+    font-size: 0.95rem ;
+}
+.links{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 3px;
+}
+.links a:hover{
+    transition: .3s;
+    color: #7b58fa;
+}
+.btn-submit{
+    margin-top: 35px;
+    font-size: 1.25rem;
+    letter-spacing: 0.05rem;
+    width: 100%;
+    padding: 15px 10px 15px;
+    cursor: pointer;
+    background: linear-gradient(0deg,#473588,#7b58fa);
+    opacity: .8;
+}
+.btn-submit:hover{
+    transition: .3s;
+    opacity: 1;
+}
+.btn-submit:active{
+    opacity: .8;
+}
+/* --element in form */
